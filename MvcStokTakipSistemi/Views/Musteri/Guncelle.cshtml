@@ -1,0 +1,39 @@
+﻿@model MvcStokTakipSistemi.Models.Entity.TBLMUSTERI
+@{
+    ViewBag.Title = "Guncelle";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <h2>MÜŞTERİ GÜNCELLEME</h2>
+        </div>
+    </div>
+</div>
+@using (Html.BeginForm("GuncelleYap", "Musteri", FormMethod.Post))
+{
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>MÜŞTERİ ID</th>
+                            <td>@Html.TextBoxFor(m => m.MUSTERIID, new { @class = "form-control" })</td>
+                        </tr>
+                        <tr>
+                            <th>MÜŞTERİ AD</th>
+                            <td>@Html.TextBoxFor(m => m.MUSTERIAD, new { @class = "form-control" })</td>
+                        </tr>
+                        <tr>
+                            <th>MÜŞTERİ SOYAD</th>
+                            <td>@Html.TextBoxFor(m => m.MUSTERISOYAD, new { @class = "form-control" })</td>
+                        </tr>
+                    </thead>
+                </table>
+                <button class="btn btn-warning" style="width:120px">Güncelle</button>
+            </div>
+        </div>
+    </div>
+}
+

@@ -1,0 +1,49 @@
+﻿@model MvcStokTakipSistemi.Models.Entity.TBLURUN
+@{
+    ViewBag.Title = "Ekle";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <h2>YENİ ÜRÜN EKLEME</h2>
+        </div>
+    </div>
+</div>
+<form class="form-group" method="post">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>ÜRÜN AD</th>
+                            <td><input type="text" class="form-control" name="URUNAD" required="" maxlength="50" /></td>
+                        </tr>
+                        <tr>
+                            <th>MARKA</th>
+                            <td><input type="text" class="form-control" name="MARKA" required="" maxlength="50" /></td>
+                        </tr>
+                        <tr>
+                            <th>KATEGORİ</th>
+                            <td>@Html.DropDownListFor(m => m.TBLKATEGORI.KATEGORIID, (List<SelectListItem>)ViewBag.dgr, new { @class = "form-control" })</td>
+                        </tr>
+                        <tr>
+                            <th>FİYAT</th>
+                            <td><input type="number" class="form-control" name="FIYAT" required="" placeholder="Yalnızca sayı giriniz." /></td>
+                        </tr>
+                        <tr>
+                            <th>STOK</th>
+                            <td><input type="number" class="form-control" name="STOK" required="" placeholder="Yalnızca sayı giriniz." /></td>
+                        </tr>
+                    </thead>
+                </table>
+                <button id="button1" class="btn btn-info" style="width:120px">Ekle</button>
+            <script>
+                $('#button1').click(function () { alert("Ürün ekleme işlemi başarılı."); });
+            </script>
+            </div>
+        </div>
+    </div>
+</form>

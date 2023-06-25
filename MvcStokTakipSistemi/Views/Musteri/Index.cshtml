@@ -1,0 +1,74 @@
+﻿@using MvcStokTakipSistemi.Models.Entity
+@using PagedList
+@using PagedList.Mvc
+@model PagedList.IPagedList<TBLMUSTERI>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <a style="width:230px; font-size:20px;" class="btn btn-primary" href="/Musteri/Ekle">YENİ MÜŞTERİ EKLE</a>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <h2>MÜŞTERİ LİSTESİ</h2>
+            <div>
+               <a style="width:200px" class="btn btn-info" href="/Musteri/Index">LİSTELE</a>
+            </div>
+        </div>
+        <div class="col-md-4">
+            @using (Html.BeginForm("Index", "Musteri", FormMethod.Get))
+            {
+                <h3>
+                    Müşteri Adı:
+                </h3>
+                <div></div>
+                @Html.TextBox("aramametni","", new { @class = "form-control", @style = "width:200px" })
+                <div style="margin-bottom:10px"></div>
+                <input style="width:200px" class="btn btn-warning" type="submit" value="ARA" />
+                <div style="margin-bottom:10px"></div>
+            }
+
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>ADI</th>
+                        <th>SOYADI</th>
+                        <th>İŞLEMLER</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var mstr in Model)
+                    {
+                        <tr>
+                            <th>@mstr.MUSTERIID</th>
+                            <td>@mstr.MUSTERIAD</td>
+                            <td>@mstr.MUSTERISOYAD</td>
+                            <td>
+                                <a href="/Musteri/Guncelle/@mstr.MUSTERIID" class="btn btn-success">Güncelle</a>
+                                @Html.ActionLink("Sil", "Sil", new { id = mstr.MUSTERIID }, new { @class = "btn btn-danger", onclick = "return confirm('Müşteriyi silmek istedğinize emin misiniz?')" })
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <div>
+                @Html.PagedListPager(Model, sayfa => Url.Action("Index", new { sayfa }))
+            </div>
+        </div>
+    </div>
+</div>
+

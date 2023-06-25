@@ -1,0 +1,36 @@
+﻿@model MvcStokTakipSistemi.Models.Entity.TBLKATEGORI
+@{
+    ViewBag.Title = "Ekle";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <h2>YENİ KATEGORİ EKLEME</h2>
+        </div>
+    </div>
+</div>
+<form class="form-group" method="post">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>KATEGORİ AD</th>
+                            <td>@Html.TextBoxFor(m => m.KATEGORIAD, new { @class = "form-control" })</td>
+                        </tr>
+                    </thead>
+                </table>
+                <div style="margin-bottom:10px">
+                    @Html.ValidationMessageFor(m => m.KATEGORIAD, "", new { @style = "color:red" })
+                </div>
+                <button id="button1" class="btn btn-info" style="width:120px">Ekle</button>
+            </div>
+            <script>
+                $('#button1').click(function () { alert("Kategori ekleme işlemi başarılı."); });
+            </script>
+        </div>
+    </div>
+</form>

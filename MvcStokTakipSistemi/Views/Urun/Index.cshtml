@@ -1,0 +1,66 @@
+﻿@using MvcStokTakipSistemi.Models.Entity;
+@using PagedList;
+@using PagedList.Mvc;
+@model List<TBLURUN>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <a href="/Urun/Ekle" style="width:200px; font-size:20px;" class="btn btn-primary">YENİ ÜRÜN EKLE</a>
+        </div>
+    </div>
+</div>
+
+<div style="margin-bottom:20px" class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <h2>ÜRÜN LİSTESİ</h2>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <table id="tbl1" class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>ÜRÜN ID</th>
+                        <th>ÜRÜN AD</th>
+                        <th>MARKA</th>
+                        <th>KATEGORİ</th>
+                        <th>FİYAT</th>
+                        <th>STOK</th>
+                        <th>İŞLEMLER</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var urun in Model)
+                    {
+                        <tr>
+                            <th>@urun.URUNID</th>
+                            <td>@urun.URUNAD</td>
+                            <td>@urun.MARKA</td>
+                            <td>@urun.TBLKATEGORI.KATEGORIAD</td>
+                            <td>@urun.FIYAT</td>
+                            <td>@urun.STOK</td>
+                            <td>
+                                <a href="/Urun/Guncelle/@urun.URUNID" class="btn btn-success">Güncelle</a>
+                                @Html.ActionLink("Sil", "Sil", new { urun.URUNID }, new { @class = "btn btn-danger", onclick = "return confirm('Ürünü silmek istediğinize emin misiniz?')" })
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<link href="~/Content/DataTables/css/dataTables.bootstrap4.css" rel="stylesheet" />
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+<script>
+    $('#tbl1').DataTable();
+</script>

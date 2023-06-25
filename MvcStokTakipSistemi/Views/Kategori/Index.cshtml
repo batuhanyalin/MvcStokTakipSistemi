@@ -1,0 +1,68 @@
+﻿@using MvcStokTakipSistemi.Models.Entity
+@using PagedList
+@using PagedList.Mvc
+
+@model PagedList.IPagedList<TBLKATEGORI>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <a style="width:250px; font-size:20px;" class="btn btn-primary" href="/Kategori/Ekle">YENİ KATEGORİ EKLE</a>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <h2>KATEGORİ LİSTESİ</h2>
+            <a style="width:200px" class="btn btn-info" href="/Kategori/Index">LİSTELE</a>
+        </div>
+        <div class="col-md-6">
+            @using (Html.BeginForm("Index", "Kategori", FormMethod.Get))
+            {
+                <h3>Kategori Adı:</h3>
+                @Html.TextBox("aramametni", "", new { @class = "form-control", @style = "width:200px" })
+                <div style="margin-bottom:10px"></div>
+                <input style="width:200px" class="btn btn-warning" type="submit" value="ARA" />
+                <div style="margin-bottom:10px"></div>
+            }
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>KATEGORI ID</th>
+                        <th>KATEGORI ADI</th>
+                        <th>İŞLEMLER</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var ktgr in Model)
+                    {
+                        <tr>
+                            <th>@ktgr.KATEGORIID</th>
+                            <td>@ktgr.KATEGORIAD</td>
+                            <td>
+                                <a href="/Kategori/Guncelle/@ktgr.KATEGORIID" class="btn btn-success">Güncelle</a>
+                                @Html.ActionLink("Sil", "Sil", new { id = ktgr.KATEGORIID }, new { @class = "btn btn-danger", onclick = "return confirm('Kategoriyi silmek istediğinize emin misiniz?')" })
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <div>
+                @Html.PagedListPager((IPagedList)Model, sayfa => Url.Action("Index", new { sayfa }))
+            </div>
+        </div>
+    </div>
+</div>
+

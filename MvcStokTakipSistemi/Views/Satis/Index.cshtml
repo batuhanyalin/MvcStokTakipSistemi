@@ -1,0 +1,40 @@
+﻿@model MvcStokTakipSistemi.Models.Entity.TBLSATIS
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+<button type="button" data-toggle="modal" data-target="#Modal1">Satış Paneli</button>
+<div class="modal" id="Modal1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <h2 class="modal-header">SATIŞ PANELİ</h2>
+            <form method="post">
+                <div class="modal-body">
+                    <label>ÜRÜN</label>
+                    @Html.DropDownListFor(m => m.TBLURUN.URUNID, (List<SelectListItem>)ViewBag.urun, new { @class = "form-control" })
+                    <br />
+                    <label>MÜŞTERİ</label>
+                    @Html.DropDownListFor(m => m.TBLMUSTERI.MUSTERIID, (List<SelectListItem>)ViewBag.musteri, new { @class = "form-control" })
+                    <br />
+                    <label>ADET</label>
+                    @Html.TextBoxFor(m => m.ADET, new { @class = "form-control" })
+                    <br />
+                    <label>SATIŞ FİYATI</label>
+                    @Html.TextBoxFor(m => m.SATISFIYAT, new { @class = "form-control" })
+                    <br />
+                    @Html.ValidationMessageFor(m => m.ADET, "", new {@style="color:red"})
+                    @Html.ValidationMessageFor(m => m.SATISFIYAT, "", new {@style="color:red"})
+                    <br />
+                    <button id="btn1" type="submit" class="btn btn-info">Satış Yap</button>        
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Vazgeç</button>
+               <script>
+                   $('#btn1').click(function () {
+                       alert('Satış işlemi başarıyla gerçekleştirildi.');
+                   });
+               </script>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

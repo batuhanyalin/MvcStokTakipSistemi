@@ -1,0 +1,59 @@
+﻿@model MvcStokTakipSistemi.Models.Entity.TBLURUN
+@{
+    ViewBag.Title = "Guncelle";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>ÜRÜN GÜNCELLEME</h2>
+        </div>
+    </div>
+</div>
+@using (Html.BeginForm("GuncellemeYap", "Urun", FormMethod.Post))
+{
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <td>@Html.TextBoxFor(m => m.URUNID, new { @class = "form-control" })</td>
+                    </tr>
+                    <tr>
+                        <th>ÜRÜN ADI</th>
+                        <td>@Html.TextBoxFor(m => m.URUNAD, new { @class = "form-control" })</td>
+                    </tr>
+                    <tr>
+                        <th>MARKA</th>
+                        <td>
+                            @Html.TextBoxFor(m => m.MARKA, new { @class = "form-control" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>KATEGORİ</th>
+                        <td>
+                            @Html.DropDownListFor(m=>m.TBLKATEGORI.KATEGORIID, (List<SelectListItem>)ViewBag.dgr,new {@class="form-control"})
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>FİYAT</th>
+                        <td>
+                            @Html.TextBoxFor(m => m.FIYAT, new { @class = "form-control" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>STOK</th>
+                        <td>
+                            @Html.TextBoxFor(m => m.STOK, new { @class = "form-control" })
+                        </td>
+                    </tr>
+                </thead>
+            </table>
+            <button class="btn btn-warning" style="width:120px">Güncelle</button>
+        </div>
+    </div>
+</div>
+}
+

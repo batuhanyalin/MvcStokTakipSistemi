@@ -1,0 +1,38 @@
+﻿@model MvcStokTakipSistemi.Models.Entity.TBLKATEGORI
+@{
+    ViewBag.Title = "Guncelle";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <h2>KATEGORİ GÜNCELLEME</h2>
+        </div>
+    </div>
+</div>
+@using (Html.BeginForm("GuncelleYap", "Kategori", FormMethod.Post))
+
+{
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>KATEGORİ ID</th>
+                            <td>@Html.TextBoxFor(m => m.KATEGORIID, new { @class = "form-control" })</td>
+                        </tr>
+                        <tr>
+                            <th>KATEGORİ AD</th>
+                            <td>@Html.TextBoxFor(m => m.KATEGORIAD, new { @class = "form-control" })</td>
+                        </tr>
+                    </thead>
+                </table>
+                <button class="btn btn-warning" style="width:120px">Güncelle</button>
+            </div>
+        </div>
+    </div>
+}
+
+
+
